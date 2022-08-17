@@ -32,3 +32,17 @@ app.listen(8800, () => {
   connect();
   console.log("connected to server!");
 });
+
+
+//error throw
+app.use((err,req,res,next)=>{
+  const status = err.status || 500;
+  const message = err.message || "something went wrong!";
+  return res.status(status).jason({
+    success : false,
+    status,
+    message 
+  })
+})
+
+

@@ -12,7 +12,6 @@ router.post("/signup", signup);
 router.post("/signin");
 
 //google auth
-router.post("/google"); 
+router.post("/google");
 
 export default router;
-YOUTUBE-MERN-BACKEND
