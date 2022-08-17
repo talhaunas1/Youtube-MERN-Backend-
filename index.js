@@ -41,7 +41,7 @@ app.use((err,req,res,next)=>{
   return res.status(status).jason({
     success : false,
     status,
-    message 
+    message
   })
 })
 
