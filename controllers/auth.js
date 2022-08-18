@@ -1,9 +1,12 @@
 import mongoose from "mongoose";
 import User from "../Schema/User.js ";
 import bcrypt from "bcryptjs";
-
+import { createError } from "../error.js";
+// import { request } from "express";
+import jwt  from "jsonwebtoken";
 //if you are making any request to mangodb your function will be asyn beacuseits goona take a time
 
+//SignUp
 export const signup = async (req, res, next) => {
   //   console.log(req.body);
   try {
@@ -15,6 +18,32 @@ export const signup = async (req, res, next) => {
 
     await newUser.save();
     res.status(200).send("user has been created");
+  } catch (err) {
+    next(err);
+  }
+};
+
+//SignIn
+export const signin = async (req, res, next) => {
+  //   console.log(req.body);
+  try {
+    //we are going to match the passwrd(decrypted) saved in db with the signin paswrd and name
+    //here user is a collection name
+    //findOne is a mongo db function
+    const user = await User.findOne({ name:req.body.name });
+    if (!user) return next(createError(404, "user nisgjot found "));
+
+    const isCorrect = await bcrypt.compare(req.body.password, user.password);
+    if (!isCorrect) return next(createError(400, "wrong passwrod "));
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT);
+    const {password, ...others} = user
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json(others);
   } catch (err) {
     next(err);
   }
