@@ -14,7 +14,7 @@ export const signup = async (req, res, next) => {
     const hash = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({ ...req.body, password: hash });
 
-    //this is how we are goning to save this in mongo DB
+    //this is how we are going to save this in mongo DB
 
     await newUser.save();
     res.status(200).send("user has been created");
@@ -37,7 +37,7 @@ export const signin = async (req, res, next) => {
     if (!isCorrect) return next(createError(400, "wrong passwrod "));
 
     const token = jwt.sign({ id: user._id }, process.env.JWT);
-    const {password, ...others} = user
+    const {password, ...others} = user._doc
     res
       .cookie("access_token", token, {
         httpOnly: true,
