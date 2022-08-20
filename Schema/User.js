@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    subscribedsUser: {
+    subscribedsUsers: {
       type: [String],
       default: 0,
     },

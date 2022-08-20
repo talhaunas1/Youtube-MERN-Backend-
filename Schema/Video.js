@@ -1,54 +1,43 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const VideoSchema = new mongoose.Schema(
   {
-    //when we upload any video it gonna have some userID
     userId: {
       type: String,
-      required: ture,
-    //   unique: true,
+      required: true,
     },
     title: {
       type: String,
-      required: ture,
-    //   unique: true,
+      required: true,
     },
     desc: {
       type: String,
-      required: ture,
-    //   unique: true,
+      required: true,
     },
     imgUrl: {
       type: String,
-      required: ture,
-    //   unique: true,
+      required: true,
     },
     videoUrl: {
       type: String,
-      required: ture,
-    //   unique: true,
+      required: true,
     },
     views: {
-      type: String,
-      default:0,
-    //   unique: true,
+      type: Number,
+      default: 0,
     },
     tags: {
       type: [String],
-      default:[],
-    //   unique: true,
+      default: [],
     },
     likes: {
       type: [String],
-      default:[],
-    //   unique: true,
+      default: [],
     },
     dislikes: {
       type: [String],
-      default:[],
-    //   unique: true,
+      default: [],
     },
-   
   },
   { timestamps: true }
 );
