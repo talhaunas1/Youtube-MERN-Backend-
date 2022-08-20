@@ -8,7 +8,7 @@ import jwt  from "jsonwebtoken";
 
 //SignUp
 export const signup = async (req, res, next) => {
-  //   console.log(req.body);
+    console.log(req.body);
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
