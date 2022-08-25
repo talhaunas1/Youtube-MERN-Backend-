@@ -1,6 +1,6 @@
 import express from "express";
 
-import { signup, signin } from "../controllers/auth.js";
+import { signup, signin, googleAuth } from "../controllers/auth.js";
 // import {  } from "../controllers/auth.js";
 
 //router from expresss
@@ -13,6 +13,6 @@ router.post("/signup", signup);
 router.post("/signin", signin);
 
 //google auth
-router.post("/google");
+router.post("/google",googleAuth);
 
 export default router;

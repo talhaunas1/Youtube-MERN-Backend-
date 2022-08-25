@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      // required: true,
     },
     img: {
       type: String,
@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema(
       type: [String],
       default: 0,
     },
+    fromGoogle:{
+      type:Boolean,
+      default:false,
+    }
   },
   { timestamps: true }
 );
